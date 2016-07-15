@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+# this tool is to generate tree graph of your directory
+find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
