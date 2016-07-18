@@ -73,7 +73,7 @@ do
       log $line
       pull_branch $line
       merge_branch $line
-      echo "Should Proceed further [y/n]? "
+#      echo "Should Proceed further [y/n]? "
       read -p "Should Proceed further [y/n]? " response < /dev/tty
       if [ "$response" != "y" ]; then
          echo "Exiting program."
