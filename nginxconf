@@ -1,0 +1,36 @@
+# this file is to manage rpm repo and to jenkins server at same place.
+
+#
+# A virtual host using mix of IP-, name-, and port-based configuration
+#
+
+
+    server {
+        listen 80;
+
+        server_name  172.30.16.42 jenkins-preprod1.sg1.freecharge.com ;
+
+        root /var/repo/webapp ;
+
+        location / {
+
+            proxy_pass http://jenkins-preprod1.sg1.freecharge.com:8080;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+          location /yum/preprod {
+                    alias /var/repo/webapp/preProd;
+                    allow all;
+                    autoindex on;
+          }
+
+          location /yum/prod {
+                    alias /var/repo/webapp/prod;
+                    allow all;
+                    autoindex on;
+          }
+
+    }
